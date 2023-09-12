@@ -20,7 +20,7 @@ function App() {
         id: 3,
         text: 'Food Shopping',
         day: 'Feb 5th at 2:20pm',
-        reminder: true,
+        reminder: false,
     },
 ])
 
@@ -30,12 +30,22 @@ const deleteTask = (id) => {
     id))
 }
 
+// Toggle Reminder
+const toggleReminder = (id) => {
+  setTasks(
+    tasks.map((task) => 
+      task.id === id ? { ...task, reminder:
+      !task.reminder } : task
+      )
+    )
+}
+
   return (
     <div className='container'>
       <Header />
       {tasks.length > 0 ? (
       <Tasks tasks={tasks} onDelete=
-      {deleteTask} />
+      {deleteTask} onToggle={toggleReminder} />
       ) : (
         'No Tasks to Show'
       )}
